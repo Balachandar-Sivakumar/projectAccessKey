@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { findDifferDays } from "../helper/accessKeyHelper";
+import { notify } from "../helper/notification";
 
 //Access key url
 const ACCESS_KEY_API = process.env.REACT_APP_ACCESSKEY_URL;
@@ -20,11 +21,10 @@ const getAccessKeys = async (set, get) => {
 const createAccessKey = async (set, get) => {
     const { formData, keys } = get();
     let currentTime = new Date(Date.now()).toUTCString()
-
-    let checkDate = findDifferDays(formData.expires_at)
+    
     let payLoad = {                        //payload for create the key
             ...formData,
-            status: checkDate > 0 || checkDate === '' ?"enabled":"disabled",
+            status:"enabled",
             expires_at: formData.expires_at?.trim() || 'unlimited',
             created_at:currentTime
         }
@@ -43,7 +43,15 @@ const createAccessKey = async (set, get) => {
 ///Update status
 const updateAccessKeyStatus = async (set,get) =>{
     const {formData,keys} = get()
-    let payLoad = {...formData,status:'disabled'}
+
+    let checkDate = findDifferDays(formData.expires_at)
+
+    if(checkDate <= 0){
+        notify('error','Error','This Access key is expired')
+        return;
+    }
+
+    let payLoad = {...formData,status:formData.status === 'enabled'?'disabled':'enabled'}
     try{
         let updateKeyRes = await axios.put(`${ACCESS_KEY_API}/${formData.id}`,payLoad)
         let updateKey = keys.map(key => key.id === formData.id ? {...key,...updateKeyRes.data}:key)

@@ -3,7 +3,7 @@ import { Form, Input, DatePicker, Button } from 'antd';
 import useAccessKeyStore from "../store/accessKeyStore";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import { accessKeyNameValidation } from "../helper/validation";
+import { accessKeyFormValidation } from "../helper/validation";
 import { AiOutlineClose, AiFillExclamationCircle } from "react-icons/ai";
 
 dayjs.extend(utc);
@@ -42,7 +42,7 @@ const CreateAccessKey = () => {
               <Form
                   layout="vertical"
                   onFinish={async () => {
-                      let isValid = await accessKeyNameValidation(setErrors,formData);
+                      let isValid = await accessKeyFormValidation(setErrors,formData);
                       if (!isValid) return;
                       createAccessKey();
                       setAction("generateKey");
@@ -58,7 +58,7 @@ const CreateAccessKey = () => {
                           placeholder="Bigcommerce credential"
                           onChange={(e) => {
                               setFormData({...formData,name: e.target.value});
-                              setErrors({});
+                              setErrors({...errors,name:''});
                           }}
                           className="rounded-md h-10 border border-gray-300 transition hover:border-gray-300 focus:border-gray-300 focus:ring-0"
                       />
@@ -67,27 +67,25 @@ const CreateAccessKey = () => {
                   <Form.Item
                       label={<span className="text-gray-500 flex items-center gap-1">Expiry Date <AiFillExclamationCircle/></span>}
                       style={{ marginBottom: "40px" }}
+                      validateStatus={errors.expires_at? 'error':''}
+                      help={errors.expires_at}
                   >
                       <DatePicker
-                          onChange={(date) =>
-                              setFormData({...formData,expires_at: date.utc().format("ddd, DD MMM YYYY HH:mm:ss [GMT]")})
+                          onChange={(date) =>{
+                              setFormData({...formData,expires_at: date.endOf('day').utc().format("ddd, DD MMM YYYY HH:mm:ss [GMT]")})
+                              setErrors({...errors,expires_at:""})
                           }
+                        }
                           style={{ width: "100%" }}
-                          className="rounded-md h-10 border border-gray-300 transition hover:border-gray-300 focus:border-gray-300 focus:ring-0 mb-10"
+                          className="rounded-md h-10 border border-gray-300 transition hover:border-gray-300 focus:border-gray-300 focus:ring-0"
                       />
                   </Form.Item>
 
-                  <Form.Item style={{ textAlign: "center", marginTop: 32 }}>
+                  <Form.Item style={{ textAlign: "center", marginTop: 72 }}>
                       <Button
                           type="primary"
                           htmlType="submit"
-                          style={{
-                              backgroundColor: "#4f7f63",
-                              borderColor: "#4f7f63",
-                              padding: "8px 20px",
-                              fontSize: 14,
-                              height:'40px'
-                          }}
+                          className="bg-[#4f7f63] border border-[#4f7f63] py-2 px-5 text-[14px] h-10 hover:!bg-[#4f7f63]"
                       >
                           Create
                       </Button>

@@ -7,7 +7,8 @@ import AccessKeySettings from "./accessKeyModel";
 import CreateAccessKey from "./createAccessKeyModel";
 import GeneratedAccessKey from "./generateAccessTokenModel";
 import DeleteAccessKey from "./deleteAccessKeyModel";
-import DisableAccessKeyModal from "./disableAccesKeyModel";
+import DisableAccessKeyModal from "./disableAccessKeyModel";
+import EnableAccessKeyModal from "./enableAccessKeyModel";
 
 
 const MainModel = () => {
@@ -30,6 +31,7 @@ const MainModel = () => {
             {action === 'generateKey' && <GeneratedAccessKey/>}
             {action === 'deleteAccessKey' && <DeleteAccessKey/>}
             {action === 'disableAccessKey' && <DisableAccessKeyModal/>}
+            {action === 'enableAccessKey' && <EnableAccessKeyModal/>}
         </>
     );
 };

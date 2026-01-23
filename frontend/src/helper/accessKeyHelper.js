@@ -1,5 +1,6 @@
 import React from "react";
 
+///Creating random 16 string for access token
 const createRandomstring = () => {
     let string = "";
     let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -10,6 +11,8 @@ const createRandomstring = () => {
     return string;
 };
 
+
+//Checking the expired_at date with current date
 const findDifferDays = (data) => {
     if(data === 'unlimited' || data === '') return data;
     const targetDate = new Date(data);
