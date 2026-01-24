@@ -8,6 +8,7 @@ import {
   FiUsers,
 } from "react-icons/fi";
 import { MdChecklist } from "react-icons/md";
+import { SettingsPanelIcon } from "./icons";
 
 const ProjectSettingsSidebar = () => {
   return (
@@ -16,7 +17,7 @@ const ProjectSettingsSidebar = () => {
       {/* Header */}
       <div className="flex flex-col items-center text-center mb-8">
         <div className="w-16 h-16 flex items-center justify-center rounded-xl border mb-3">
-          <MdChecklist className="text-3xl text-emerald-700" />
+          <SettingsPanelIcon/>
         </div>
 
         <h2 className="text-md text-gray-800">

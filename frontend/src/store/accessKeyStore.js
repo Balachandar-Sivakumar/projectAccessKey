@@ -1,7 +1,8 @@
 import React from "react";
 import { create } from "zustand";
-import { deleteAccessKey, getAccessKeys, updateAccessKeyStatus } from "../handlers/accesKeysHandler";
-import { createAccessKey } from "../handlers/accesKeysHandler";
+import { deleteAccessKey, getAccessKeys, updateAccessKeyStatus } from "../handlers/accesKeyService";
+import { createAccessKey } from "../handlers/accesKeyService";
+import { handleCancel } from "../handlers/accessKeyHandler";
 
 //Global function and states
 const useAccessKeyStore = create((set, get) => ({
@@ -18,7 +19,8 @@ const useAccessKeyStore = create((set, get) => ({
     getAccessKeys : () => getAccessKeys(set,get),
     createAccessKey : (...args) => createAccessKey(set,get,...args),
     updateAccessKeyStatus : (...args) => updateAccessKeyStatus(set,get,...args),
-    deleteAccessKey : () => deleteAccessKey(set,get)
+    deleteAccessKey : () => deleteAccessKey(set,get),
+    handleCancel: () => handleCancel(set,get)
 }));
 
 export default useAccessKeyStore;

@@ -3,14 +3,10 @@ import { Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { AiOutlineClose } from "react-icons/ai";
 import useAccessKeyStore from "../store/accessKeyStore";
+import { handleCancel } from "../handlers/accessKeyHandler";
 
 export default function DeleteAccessKey() {
-    const { setAction, setFormData, deleteAccessKey } = useAccessKeyStore();
-
-    function handleCancel() {
-        setAction(null);
-        setFormData({ name: "", expires_at: "" });
-    }
+    const { deleteAccessKey,handleCancel } = useAccessKeyStore();
 
     return (
         <div

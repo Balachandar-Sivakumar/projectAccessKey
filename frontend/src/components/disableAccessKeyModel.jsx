@@ -5,17 +5,12 @@ import { AiOutlineClose } from "react-icons/ai";
 import useAccessKeyStore from "../store/accessKeyStore";
 
 const DisableAccessKeyModal = () => {
-    const { updateAccessKeyStatus, setAction, setFormData } = useAccessKeyStore();
-
-    function cancelAction() {
-        setAction(null);
-        setFormData({ name: '', expires_at: '' });
-    }
+    const { updateAccessKeyStatus, handleCancel } = useAccessKeyStore();
 
     return (
         <div
             className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4"
-            onClick={cancelAction} // click outside closes modal
+            onClick={handleCancel} // click outside closes modal
         >
             <div
                 className="relative bg-white rounded-2xl p-6 w-[480px] h-[360px] pt-20 shadow-lg text-center"
@@ -23,7 +18,7 @@ const DisableAccessKeyModal = () => {
             >
                 {/* Close button */}
                 <button
-                    onClick={cancelAction}
+                    onClick={handleCancel}
                     className="absolute top-4 right-4 w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-100 transition"
                 >
                     <AiOutlineClose size={16} className="text-gray-600" />
@@ -48,7 +43,7 @@ const DisableAccessKeyModal = () => {
                 {/* Actions */}
                 <div className="flex justify-center gap-4">
                     <Button
-                        onClick={cancelAction}
+                        onClick={handleCancel}
                         className="text-sm rounded-lg border border-gray-300 font-medium"
                     >
                         Cancel

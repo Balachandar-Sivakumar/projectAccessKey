@@ -9,7 +9,7 @@ export const notify = (type,message,description) => {
         message,
         description,
         placement: "topRight",
-        duration: 2,
+        duration: 3,
         icon:
             type === "success" ? (
                 <CheckCircleFilled style={{ color: "#22C55E" }} />

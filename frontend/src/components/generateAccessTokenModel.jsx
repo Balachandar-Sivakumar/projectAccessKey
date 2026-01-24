@@ -11,16 +11,13 @@ import {
 import { createRandomstring } from "../helper/accessKeyHelper";
 import useAccessKeyStore from "../store/accessKeyStore";
 import { AiOutlineClose } from "react-icons/ai";
+import { copyToClipBoard } from "../handlers/accessKeyHandler";
 
 export default function GeneratedAccessKey() {
-    const { setAction } = useAccessKeyStore();
+    const { handleCancel } = useAccessKeyStore();
     const [showKey, setShowKey] = useState(true);
     const [copy, setCopy] = useState(false);
     const [accesskey, setAccessKey] = useState(createRandomstring());
-
-    function handleCancel() {
-        setAction(null);
-    }
 
     return (
         <div
@@ -42,11 +39,7 @@ export default function GeneratedAccessKey() {
                 {/* Success Icon */}
                 <div className="flex items-center mb-4">
                     <CheckCircleFilled
-                        style={{
-                            color: "#009688",
-                            fontSize: 22,
-                            marginRight: 8,
-                        }}
+                        style={{color: "#009688",fontSize: 22,marginRight: 8,}}
                     />
                     <h3 className="text-[18px] font-semibold m-0">
                         Access Key Generated
@@ -93,17 +86,10 @@ export default function GeneratedAccessKey() {
                 <div className="flex justify-end gap-3">
                     {!copy && <Button onClick={handleCancel}>Cancel</Button>}
                     <Button
-                        onClick={() => {
-                            navigator.clipboard.writeText(accesskey);
-                            setCopy(true);
-                            setShowKey(false);
-                        }}
+                        onClick={() => copyToClipBoard(accesskey,setCopy,setShowKey)}
                         type="primary"
                         icon={copy ? <CheckOutlined /> : <CopyOutlined />}
-                        style={{
-                            backgroundColor: copy ? "#ccd1cd" : "#518167",
-                            color: copy ? "black" : "white",
-                        }}
+                        className={`${copy ? '!bg-[#ccd1cd] !text-black ':'!bg-[#518167] text-white'}`}
                     >
                         {copy ? `Copied! Keep It Secure` : "Copy API Key"}
                     </Button>
