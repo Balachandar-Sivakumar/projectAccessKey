@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   FiSettings,
   FiGlobe,
@@ -7,7 +6,6 @@ import {
   FiUser,
   FiUsers,
 } from "react-icons/fi";
-import { MdChecklist } from "react-icons/md";
 import { SettingsPanelIcon } from "./icons";
 
 const ProjectSettingsSidebar = () => {

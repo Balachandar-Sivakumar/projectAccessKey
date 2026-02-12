@@ -8,7 +8,7 @@ function Header() {
       {/* Left Section */}
       <div className="flex items-center gap-8">
         {/* Logo */}
-        <img src="https://images.g2crowd.com/uploads/product/image/9a21ddfdd418ebf5f27b7d2f58ef3eac/dckap-integrator.png" alt="Logo" className="h-7 w-auto" />
+        <img src='/dckap-integrator.png' alt="Logo" className="h-7 w-auto" />
 
         {/* Meta Info */}
         <div className="flex items-center gap-6 text-sm text-gray-700">
@@ -31,7 +31,7 @@ function Header() {
 
       {/* Right Section */}
       <div className="flex items-center gap-3">
-        <select className="h-8 px-2 rounded-md border-none bg-white text-sm focus:outline-none">
+        <select aria-label="country" className="h-8 px-2 rounded-md border-none bg-white text-sm focus:outline-none">
           <option>USA</option>
           <option>Canada</option>
         </select>

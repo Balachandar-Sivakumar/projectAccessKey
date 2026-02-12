@@ -69,6 +69,7 @@ const AccessKeyList = () => {
                         View Usage Log
                       </button>
                       <button
+                      aria-label="Delete icon"
                         onClick={() => {
                           setAction("deleteAccessKey");
                           setFormData(key);
@@ -122,13 +123,14 @@ const AccessKeyList = () => {
                         <div className="text-[13px] text-gray-500 mb-1 text-center">
                           Status
                         </div>
-                        <label className="toggle-switch transform scale-75 origin-right">
+                        <label aria-label='control_key' className="toggle-switch transform scale-75 origin-right">
                           <input
+                          aria-label="control_key"
                             className="access-handle"
                             type="checkbox"
-                            checked={key.status === 1}
+                            checked={key?.status === 1}
                             onClick={() => {
-                              setAction(key.status === 1 ? "disableAccessKey": "enableAccessKey",);
+                              setAction(key?.status === 1 ? "disableAccessKey": "enableAccessKey",);
                               setFormData(key);
                             }}
                           />

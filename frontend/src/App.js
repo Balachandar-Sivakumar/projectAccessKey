@@ -1,13 +1,12 @@
-import logo from "./logo.svg";
 import "./App.css";
-import AppRoutes from "./routes/route";
 import { BrowserRouter } from "react-router-dom";
+import MainModel from "./components/ProjectAccessKeyMain";
 import '@fontsource/inter';
 
 function App() {
     return (
         <BrowserRouter>
-            <AppRoutes />
+            <MainModel />
         </BrowserRouter>
     );
 }

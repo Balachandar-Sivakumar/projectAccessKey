@@ -88,8 +88,9 @@ export default function GeneratedAccessKey() {
                     <Button
                         onClick={() => copyToClipBoard(accesskey,setCopy,setShowKey)}
                         type="primary"
+                        disabled={copy}
                         icon={copy ? <CheckOutlined /> : <CopyOutlined />}
-                        className={`${copy ? '!bg-[#ccd1cd] !text-black ':'!bg-[#518167] text-white'}`}
+                        className={`${copy ? '!bg-[#ccd1cd] !text-black ':'!bg-[#518167] text-white'} cursor-pointer`}
                     >
                         {copy ? `Copied! Keep It Secure` : "Copy API Key"}
                     </Button>

@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import { notify } from "./notification";
 
 ///Creating random 16 string for access token
 const createRandomstring = () => {
@@ -22,4 +24,25 @@ const findDifferDays = (data) => {
     return diffDays;
 };
 
-export {createRandomstring, findDifferDays}
+//service from backend
+const handleRequest = async (apiUrl, action = 'get', payload = "",timeout=2000) => {
+  try {
+    //get api response from db
+    let response = await axios({
+      method: action,
+      url: apiUrl,
+      data: payload,
+      timeout: timeout,
+    });
+    return response;
+  } catch (err) {
+    notify(
+      "error",
+      "Error",
+      `"Internal server error while ${action}ing access key status",`,
+    );
+    console.log(err)
+  }
+};
+
+export {createRandomstring, findDifferDays, handleRequest}

@@ -1,8 +1,4 @@
 import React from "react";
-import axios from "axios";
-import { findDifferDays } from "./accessKeyHelper";
-
-const ACCESS_KEY_API = process.env.REACT_APP_ACCESSKEY_URL;
 
 ///Validating the form
 const accessKeyFormValidation = (setError,formData,keys) => {
@@ -12,7 +8,7 @@ const accessKeyFormValidation = (setError,formData,keys) => {
         newErrors.name = 'Please enter the access key name'
     }
 
-    let checkName = keys.find(key => key.name === formData.name.toLowerCase())
+    let checkName = keys.find(key => key.name === formData.name.trim().toLowerCase())
 
     if(checkName){
         newErrors.name = 'Access key name already exists'

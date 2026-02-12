@@ -1,7 +1,7 @@
 import React from "react";
 import { notify } from "../helper/notification";
 import { findDifferDays } from "../helper/accessKeyHelper";
-import { updateAccessKeyStatus } from "./accesKeyService";
+import { updateAccessKeyStatus } from "./accessKeyService";
 
 //Handling the if something cancel
 const handleCancel = (set, get) => {
@@ -34,7 +34,7 @@ const disableExpiredAccessKeys = (set,get,keys) => {
 
     if (days <= 0 && days !== "unlimited" && key.status === 1) {
       set({formData:key})
-      await updateAccessKeyStatus(set,get);
+      await updateAccessKeyStatus(set,get,true);
     }
   })
 }

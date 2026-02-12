@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import { getAccessKeyLogs } from "../handlers/accesKeyService";
+import { getAccessKeyLogs } from "../handlers/accessKeyService";
 import useAccessKeyStore from "../store/accessKeyStore";
 import { KeyIcon } from "./icons";
 
@@ -19,7 +19,7 @@ const AccessKeyLogsModel = () => {
     getLogs();
   }, []);
 
-  const [page, setPage] = useState(10); //page nation
+  const [page, setPage] = useState(15); //page nation
 
   const reversedLogs = [...logs].reverse(); 
   const data = reversedLogs.slice(0, page); ///last 10 records
@@ -81,7 +81,7 @@ const AccessKeyLogsModel = () => {
                 <tr>
                   <td colSpan={2} className="text-center py-3">
                     <button
-                      onClick={() => setPage(page + 10)}
+                      onClick={() => setPage(page + 15)}
                       className="border px-5 py-2 cursor-pointer rounded-md text-sm hover:bg-gray-100"
                     >
                       View More logs

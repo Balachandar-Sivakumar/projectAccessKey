@@ -35,7 +35,7 @@ function SidebarIcon({ children, active, onClick }) {
   return (
     <Link
       onClick={onClick}
-
+      to={'#'}
       className={`w-8 h-8 flex items-center justify-center rounded-lg transition
         ${
           active

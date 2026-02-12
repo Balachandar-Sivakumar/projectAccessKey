@@ -1,7 +1,7 @@
 import React from "react";
 import { create } from "zustand";
-import { deleteAccessKey, getAccessKeys, updateAccessKeyStatus } from "../handlers/accesKeyService";
-import { createAccessKey } from "../handlers/accesKeyService";
+import { deleteAccessKey, getAccessKeys, updateAccessKeyStatus } from "../handlers/accessKeyService";
+import { createAccessKey } from "../handlers/accessKeyService";
 import { handleCancel } from "../handlers/accessKeyHandler";
 
 //Global function and states
